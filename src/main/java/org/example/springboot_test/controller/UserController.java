@@ -28,9 +28,15 @@ public class UserController {
         userService.signUp(userDto);
     }
 
+    @PostMapping("/login")
+    public String login(@RequestBody UserDto userDto) {
+        return userService.login(userDto);
+    }
+
     // 회원 목록 조회
     @GetMapping
     public List<UserDto> getUsers() {
+
         return userService.getUsers();
     }
 }

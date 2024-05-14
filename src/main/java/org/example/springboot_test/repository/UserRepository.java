@@ -13,4 +13,6 @@ public interface UserRepository extends JpaRepository<User, String> {
     * Update: save()
     * Delete: deleteById
     * */
+
+    User findByUserIdAndUserPw(String userId, String userPw);
 }

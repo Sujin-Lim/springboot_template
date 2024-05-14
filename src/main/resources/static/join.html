@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/join.js" charset="UTF-8"></script>
+
     <title>회원가입</title>
+
 </head>
 <body>
 <h2>회원가입</h2>
@@ -27,39 +31,5 @@
     <button type="submit">회원가입</button>
 </form>
 
-<script>
-    const form = document.getElementById('signUpForm');
-
-    form.addEventListener('submit', (event) => {
-        event.preventDefault(); // 기본 폼 제출 동작 방지
-
-        const userData = {
-            userId: document.getElementById('userId').value,
-            userPw: document.getElementById('userPw').value,
-            userName: document.getElementById('userName').value,
-            userEmail: document.getElementById('userEmail').value
-        };
-
-        fetch('/api/users/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        })
-            .then(response => {
-                if (response.ok) {
-                    alert('회원가입 성공!');
-                    // 추가 작업 수행 (예: 로그인 페이지로 이동)
-                } else {
-                    alert('회원가입 실패!');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('오류가 발생했습니다.');
-            });
-    });
-</script>
 </body>
 </html>

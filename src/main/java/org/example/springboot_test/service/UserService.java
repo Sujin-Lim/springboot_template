@@ -27,11 +27,22 @@ public class UserService {
                 .userName(userDto.getUserName())
                 .userEmail(userDto.getUserEmail())
                 .userType("N")
+                .createDate(userDto.getCreateDate())
+                .updateDate(userDto.getUpdateDate())
                 .build();
 
         // UserRepository를 사용하여 회원 정보 저장
         userRepository.save(user);
     }
+
+    public String login(UserDto userDto) {
+        String userId = userDto.getUserId();
+        String userPw = userDto.getUserPw();
+
+        User result = userRepository.findByUserIdAndUserPw(userId, userPw);
+        return result != null ? "OK" : "error";
+    }
+
 
     public List<UserDto> getUsers() {
         // UserRepository를 사용하여 모든 회원 정보 조회
