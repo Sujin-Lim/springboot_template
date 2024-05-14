@@ -1,13 +1,18 @@
 package org.example.springboot_test.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.springboot_test.dto.UserDto;
+import org.example.springboot_test.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.example.springboot_test.service.UserService;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -31,6 +36,11 @@ public class UserController {
     @PostMapping("/login")
     public String login(@RequestBody UserDto userDto) {
         return userService.login(userDto);
+    }
+
+    @PostMapping("/getUserInfo")
+    public User getUserInfo(@RequestBody UserDto userDto) {
+        return userService.getUserInfo(userDto);
     }
 
     // 회원 목록 조회
