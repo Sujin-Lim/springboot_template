@@ -21,7 +21,7 @@ public class Application implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(@NonNull ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("join.html");
+        registry.addViewController("/").setViewName("index.html");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         log.debug("::::::: addViewControllers: index.html");
     }
