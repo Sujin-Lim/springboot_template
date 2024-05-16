@@ -1,5 +1,6 @@
 package org.example.springboot_test.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.springboot_test.dto.UserDto;
@@ -20,6 +21,7 @@ public class UserController {
     private final UserService userService;
 
     // 로그인
+    @Operation(summary = "일반 회원 로그인", description = "로그인")
     @PostMapping("/login")
     public String login(@RequestBody UserDto userDto) {
         return userService.login(userDto);
