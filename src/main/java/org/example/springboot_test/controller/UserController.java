@@ -1,5 +1,6 @@
 package org.example.springboot_test.controller;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.springboot_test.dto.UserDto;
 import org.example.springboot_test.entity.User;
@@ -8,24 +9,24 @@ import org.springframework.web.bind.annotation.*;
 import org.example.springboot_test.service.UserService;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/users")
+@RequiredArgsConstructor
+@RequestMapping("/api/auth")
 public class UserController {
 
     private final UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    // 로그인
+    @PostMapping("/login")
+    public String login(@RequestBody UserDto userDto) {
+        return userService.login(userDto);
     }
 
-    // 회원가입 처리
-    @PostMapping("/signup")
+    // 회원가입 - 일반
+    @PostMapping("/guest")
     public void signUp(@RequestBody UserDto userDto) {
         userDto.setCreateDate(LocalDateTime.now());
         userDto.setUpdateDate(LocalDateTime.now());
@@ -33,20 +34,29 @@ public class UserController {
         userService.signUp(userDto);
     }
 
-    @PostMapping("/login")
-    public String login(@RequestBody UserDto userDto) {
-        return userService.login(userDto);
-    }
-
-    @PostMapping("/getUserInfo")
+    // 회원정보 - 일반
+    @PostMapping("/info")
     public User getUserInfo(@RequestBody UserDto userDto) {
         return userService.getUserInfo(userDto);
     }
 
-    // 회원 목록 조회
-    @GetMapping
-    public List<UserDto> getUsers() {
+    // 회원가입 - 운영자
+    @PostMapping("/admin")
+    public void adminSignUp(@RequestBody UserDto userDto) {
+        userDto.setCreateDate(LocalDateTime.now());
+        userDto.setUpdateDate(LocalDateTime.now());
 
-        return userService.getUsers();
+        userService.adminSignUp(userDto);
+    }
+
+    // 로그인 - 운영자: DB를 따로쓰나?
+    @PostMapping("admin/login")
+    public String adminLogin(@RequestBody UserDto userDto) {
+        return userService.login(userDto);
+    }
+
+    @PostMapping("/admin/info")
+    public User getAdminInfo(@RequestBody UserDto userDto) {
+        return userService.getUserInfo(userDto);
     }
 }

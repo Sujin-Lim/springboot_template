@@ -5,7 +5,7 @@ $(function() {
 });
 
 function getUserInfo() {
-    fetch('/api/users/getUserInfo', {
+    fetch('/api/auth/info', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

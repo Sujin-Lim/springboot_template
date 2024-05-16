@@ -10,7 +10,7 @@ $(document).ready(function() {
             userPw: document.getElementById('userPw').value,
         };
 
-        fetch('/api/users/login', {
+        fetch('/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

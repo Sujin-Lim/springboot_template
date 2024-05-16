@@ -12,7 +12,7 @@ $(document).ready(function() {
         userEmail: document.getElementById('userEmail').value
     };
 
-    fetch('/api/users/signup', {
+    fetch('/api/auth/signUp', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -68,6 +68,21 @@ public class UserService {
                 .build();
     }
 
+    public void adminSignUp(UserDto userDto) {
+        User user = User.builder()
+                .userId(userDto.getUserId())
+                .userPw(userDto.getUserPw())
+                .userName(userDto.getUserName())
+                .userEmail(userDto.getUserEmail())
+                .userType("A")
+                .createDate(userDto.getCreateDate())
+                .updateDate(userDto.getUpdateDate())
+                .build();
+
+        // UserRepository를 사용하여 회원 정보 저장
+        userRepository.save(user);
+    }
+
     public User getUserInfo(UserDto userDto) {
         String userId = userDto.getUserId();
 
