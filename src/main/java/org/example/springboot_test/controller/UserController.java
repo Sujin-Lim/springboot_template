@@ -82,7 +82,14 @@ public class UserController {
     }
 
     @PostMapping("/checkEmail")
-    public String checkEmail(@RequestParam String email) {
+    public String checkEmail(@RequestBody UserDto userDto) {
+        String email = userDto.getUserEmail();
         return userService.checkEmail(email);
+    }
+
+    @PostMapping("/checkId")
+    public String checkId(@RequestBody UserDto userDto) {
+        String userId = userDto.getUserId();
+        return userService.checkId(userId);
     }
 }

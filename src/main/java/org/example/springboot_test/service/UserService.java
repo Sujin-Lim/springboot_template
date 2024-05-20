@@ -91,7 +91,15 @@ public class UserService {
 
     public String checkEmail(String email) {
         Long res = userRepository.countByUserEmail(email);
-        if (res == 1) {
+        if (res >= 1) {
+            return "false";
+        } else {
+            return "OK";
+        }
+    }
+    public String checkId(String userId) {
+        Long res = userRepository.countByUserId(userId);
+        if (res >= 1) {
             return "false";
         } else {
             return "OK";
