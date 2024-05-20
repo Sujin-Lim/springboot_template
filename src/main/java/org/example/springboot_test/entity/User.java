@@ -39,4 +39,10 @@ public class User {
     @Column(name="UPDATE_DATE")
     private LocalDateTime updateDate;
 
+//    @Column(name="FCM")
+//    private String fcm;
+//
+//    @Column(name="DEVICE_ID")
+//    private String deviceId;
+
 }

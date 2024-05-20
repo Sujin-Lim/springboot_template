@@ -88,4 +88,13 @@ public class UserService {
 
         return userRepository.findByUserId(userId);
     }
+
+    public String checkEmail(String email) {
+        Long res = userRepository.countByUserEmail(email);
+        if (res == 1) {
+            return "false";
+        } else {
+            return "OK";
+        }
+    }
 }

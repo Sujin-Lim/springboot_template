@@ -28,4 +28,10 @@ public class UserDto {
     @Column(nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime updateDate;
 
+//    @Column(name="FCM")
+//    private String fcm;
+//
+//    @Column(name="DEVICE_ID")
+//    private String deviceId;
+
 }
